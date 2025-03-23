@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import Link from 'next/link';
+import { BookOpen, Users, Globe, ArrowRight } from 'lucide-react';
 
 interface FormData {
   word: string;
@@ -10,7 +12,7 @@ interface FormData {
   file: File | null;
 }
 
-export default function Contribute() {
+export default function ContributePage() {
   const [formData, setFormData] = useState<FormData>({
     word: "",
     translationKifuliiru: "",
@@ -45,112 +47,99 @@ export default function Contribute() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-10">
-      <div className="container mx-auto max-w-2xl p-6 bg-white rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-indigo-700 mb-6 text-center">
-          Contribute to the Kifuliiru Dictionary
+    <div className="container mx-auto px-4 py-12">
+      {/* Hero Section */}
+      <div className="text-center mb-16">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Contribute to Kifuliiru Language Preservation
         </h1>
-        <p className="text-gray-600 mb-8 text-center">
-          Help us expand the dictionary by submitting new words, translations,
-          or media content. Your contributions will go through a validation
-          process before being added.
+        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Help us preserve and promote the Kifuliiru language by contributing to our dictionary and community.
         </p>
+      </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Word Field */}
-          <div>
-            <label className="block text-gray-700 font-medium mb-2">Word</label>
-            <input
-              type="text"
-              name="word"
-              value={formData.word}
-              onChange={handleChange}
-              placeholder="Enter the word"
-              className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              required
-            />
+      {/* Benefits Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <BookOpen className="h-12 w-12 text-orange-500 mb-4" />
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+            Preserve Language
+          </h3>
+          <p className="text-gray-600 dark:text-gray-300">
+            Help document and preserve the Kifuliiru language for future generations.
+          </p>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <Users className="h-12 w-12 text-orange-500 mb-4" />
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+            Join Community
+          </h3>
+          <p className="text-gray-600 dark:text-gray-300">
+            Connect with other language enthusiasts and native speakers.
+          </p>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <Globe className="h-12 w-12 text-orange-500 mb-4" />
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+            Global Impact
+          </h3>
+          <p className="text-gray-600 dark:text-gray-300">
+            Make a difference in preserving indigenous languages worldwide.
+          </p>
+        </div>
+      </div>
+
+      {/* Call to Action */}
+      <div className="bg-orange-50 dark:bg-orange-900/20 p-8 rounded-lg text-center">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Ready to Contribute?
+        </h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+          We've created a dedicated platform for contributions at Fuliiru Hub. Join our community and start making a difference today.
+        </p>
+        <Link
+          href="https://fuliiruhub.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center space-x-2 bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors"
+        >
+          <span>Visit Fuliiru Hub</span>
+          <ArrowRight className="h-5 w-5" />
+        </Link>
+      </div>
+
+      {/* How to Contribute */}
+      <div className="mt-16">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+          How to Contribute
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              Dictionary Contributions
+            </h3>
+            <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+              <li>• Add new words and their meanings</li>
+              <li>• Provide example sentences</li>
+              <li>• Add pronunciation guides</li>
+              <li>• Include cultural context</li>
+            </ul>
           </div>
 
-          {/* Translation Fields */}
-          <div>
-            <label className="block text-gray-700 font-medium mb-2">
-              Translation in Kifuliiru
-            </label>
-            <input
-              type="text"
-              name="translationKifuliiru"
-              value={formData.translationKifuliiru}
-              onChange={handleChange}
-              placeholder="Translation in Kifuliiru"
-              className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              required
-            />
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              Community Engagement
+            </h3>
+            <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+              <li>• Participate in discussions</li>
+              <li>• Share cultural knowledge</li>
+              <li>• Help with translations</li>
+              <li>• Suggest improvements</li>
+            </ul>
           </div>
-
-          <div>
-            <label className="block text-gray-700 font-medium mb-2">
-              Translation in Kiswahili
-            </label>
-            <input
-              type="text"
-              name="translationKiswahili"
-              value={formData.translationKiswahili}
-              onChange={handleChange}
-              placeholder="Translation in Kiswahili"
-              className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
-
-          <div>
-            <label className="block text-gray-700 font-medium mb-2">
-              Translation in French
-            </label>
-            <input
-              type="text"
-              name="translationFrench"
-              value={formData.translationFrench}
-              onChange={handleChange}
-              placeholder="Translation in French"
-              className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
-
-          <div>
-            <label className="block text-gray-700 font-medium mb-2">
-              Translation in English
-            </label>
-            <input
-              type="text"
-              name="translationEnglish"
-              value={formData.translationEnglish}
-              onChange={handleChange}
-              placeholder="Translation in English"
-              className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
-
-          {/* File Upload */}
-          <div>
-            <label className="block text-gray-700 font-medium mb-2">
-              Upload Audio/Video
-            </label>
-            <input
-              type="file"
-              name="file"
-              accept="audio/*,video/*"
-              onChange={handleFileChange}
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none"
-            />
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition-colors"
-          >
-            Submit Contribution
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   );

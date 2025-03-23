@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { Menu, MoreHorizontal, Sun, Moon } from "lucide-react";
-import { MainMenu } from "./header/MainMenu";
-import { UserMenu } from "./header/UserMenu";
-import { LanguageSelector } from "./header/LanguageSelector";
-import { Search } from "./header/Search";
-import { mainNavigation, megaMenuCategories } from "./header/menuData";
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Menu, Search, MoreHorizontal, Sun, Moon } from 'lucide-react';
+import { MainMenu } from './MainMenu';
+import { UserMenu } from './UserMenu';
+import { LanguageSelector } from './LanguageSelector';
+import { mainNavigation, megaMenuCategories } from './menuData';
 
 interface HeaderProps {
   isAuthenticated: boolean;
@@ -13,17 +12,15 @@ interface HeaderProps {
   onLogout: () => void;
   currentLanguage: string;
   onLanguageChange: (code: string) => void;
-  onSearch: (query: string) => void;
 }
 
-export default function Header({
+export const Header = ({
   isAuthenticated,
   onLogin,
   onLogout,
   currentLanguage,
   onLanguageChange,
-  onSearch,
-}: HeaderProps) {
+}: HeaderProps) => {
   const [mounted, setMounted] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -31,20 +28,20 @@ export default function Header({
 
   useEffect(() => {
     setMounted(true);
-    const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const storedTheme = localStorage.getItem("theme");
-    const initialDark = storedTheme ? storedTheme === "dark" : darkModePreference;
+    const darkModePreference = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = localStorage.getItem('theme');
+    const initialDark = storedTheme ? storedTheme === 'dark' : darkModePreference;
     setIsDark(initialDark);
     updateTheme(initialDark);
   }, []);
 
   const updateTheme = (dark: boolean) => {
     if (dark) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   };
 
@@ -100,7 +97,12 @@ export default function Header({
 
               {/* Right-side utilities */}
               <div className="flex items-center space-x-4 ml-4">
-                <Search onSearch={onSearch} />
+                <button
+                  className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  aria-label="Search"
+                >
+                  <Search className="h-5 w-5 text-gray-600 dark:text-gray-300" />
+                </button>
 
                 <LanguageSelector
                   currentLanguage={currentLanguage}
@@ -164,4 +166,4 @@ export default function Header({
       />
     </>
   );
-}
+}; 
